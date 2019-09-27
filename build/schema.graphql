@@ -1,0 +1,84 @@
+type Donate @entity {
+  id: ID!
+  giverId: BigInt! # uint64
+  receiverId: BigInt! # uint64
+  token: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type DonateAndCreateGiver @entity {
+  id: ID!
+  giver: Bytes! # address
+  receiverId: BigInt! # uint64
+  token: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type EscapeFundsCalled @entity {
+  id: ID!
+  token: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type PaymentAuthorized @entity {
+  id: ID!
+  idPayment: BigInt! # uint256
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  token: Bytes! # address
+  reference: Bytes! # bytes32
+}
+
+type PaymentExecuted @entity {
+  id: ID!
+  idPayment: BigInt! # uint256
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  token: Bytes! # address
+}
+
+type PaymentCanceled @entity {
+  id: ID!
+  idPayment: BigInt! # uint256
+}
+
+type SpenderAuthorization @entity {
+  id: ID!
+  spender: Bytes! # address
+  authorized: Boolean! # bool
+}
+
+type Pause @entity {
+  id: ID!
+}
+
+type Unpause @entity {
+  id: ID!
+}
+
+type EscapeHatchBlackistedToken @entity {
+  id: ID!
+  token: Bytes! # address
+}
+
+type EscapeHatchCalled @entity {
+  id: ID!
+  token: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type OwnershipRequested @entity {
+  id: ID!
+  by: Bytes! # address
+  to: Bytes! # address
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+}
+
+type OwnershipRemoved @entity {
+  id: ID!
+}
