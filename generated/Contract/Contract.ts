@@ -11,7 +11,8 @@ import {
   EthereumTuple,
   Bytes,
   Address,
-  BigInt
+  BigInt,
+  CallResult
 } from "@graphprotocol/graph-ts";
 
 export class Donate extends EthereumEvent {
@@ -385,50 +386,133 @@ export class Contract extends SmartContract {
 
   maxSecurityGuardDelay(): BigInt {
     let result = super.call("maxSecurityGuardDelay", []);
+
     return result[0].toBigInt();
+  }
+
+  try_maxSecurityGuardDelay(): CallResult<BigInt> {
+    let result = super.tryCall("maxSecurityGuardDelay", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 
   escapeHatchCaller(): Address {
     let result = super.call("escapeHatchCaller", []);
+
     return result[0].toAddress();
+  }
+
+  try_escapeHatchCaller(): CallResult<Address> {
+    let result = super.tryCall("escapeHatchCaller", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
   }
 
   securityGuardLastCheckin(): BigInt {
     let result = super.call("securityGuardLastCheckin", []);
+
     return result[0].toBigInt();
+  }
+
+  try_securityGuardLastCheckin(): CallResult<BigInt> {
+    let result = super.tryCall("securityGuardLastCheckin", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 
   paused(): boolean {
     let result = super.call("paused", []);
+
     return result[0].toBoolean();
+  }
+
+  try_paused(): CallResult<boolean> {
+    let result = super.tryCall("paused", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
   }
 
   numberOfAuthorizedPayments(): BigInt {
     let result = super.call("numberOfAuthorizedPayments", []);
+
     return result[0].toBigInt();
+  }
+
+  try_numberOfAuthorizedPayments(): CallResult<BigInt> {
+    let result = super.tryCall("numberOfAuthorizedPayments", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 
   allowDisbursePaymentWhenPaused(): boolean {
     let result = super.call("allowDisbursePaymentWhenPaused", []);
+
     return result[0].toBoolean();
+  }
+
+  try_allowDisbursePaymentWhenPaused(): CallResult<boolean> {
+    let result = super.tryCall("allowDisbursePaymentWhenPaused", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
   }
 
   isTokenEscapable(_token: Address): boolean {
     let result = super.call("isTokenEscapable", [
       EthereumValue.fromAddress(_token)
     ]);
+
     return result[0].toBoolean();
+  }
+
+  try_isTokenEscapable(_token: Address): CallResult<boolean> {
+    let result = super.tryCall("isTokenEscapable", [
+      EthereumValue.fromAddress(_token)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
   }
 
   owner(): Address {
     let result = super.call("owner", []);
+
     return result[0].toAddress();
+  }
+
+  try_owner(): CallResult<Address> {
+    let result = super.tryCall("owner", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
   }
 
   authorizedPayments(param0: BigInt): Contract__authorizedPaymentsResult {
     let result = super.call("authorizedPayments", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
+
     return new Contract__authorizedPaymentsResult(
       result[0].toString(),
       result[1].toBytes(),
@@ -443,36 +527,167 @@ export class Contract extends SmartContract {
     );
   }
 
+  try_authorizedPayments(
+    param0: BigInt
+  ): CallResult<Contract__authorizedPaymentsResult> {
+    let result = super.tryCall("authorizedPayments", [
+      EthereumValue.fromUnsignedBigInt(param0)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(
+      new Contract__authorizedPaymentsResult(
+        value[0].toString(),
+        value[1].toBytes(),
+        value[2].toAddress(),
+        value[3].toBigInt(),
+        value[4].toBoolean(),
+        value[5].toBoolean(),
+        value[6].toAddress(),
+        value[7].toAddress(),
+        value[8].toBigInt(),
+        value[9].toBigInt()
+      )
+    );
+  }
+
   securityGuard(): Address {
     let result = super.call("securityGuard", []);
+
     return result[0].toAddress();
+  }
+
+  try_securityGuard(): CallResult<Address> {
+    let result = super.tryCall("securityGuard", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
   }
 
   timeLock(): BigInt {
     let result = super.call("timeLock", []);
+
     return result[0].toBigInt();
+  }
+
+  try_timeLock(): CallResult<BigInt> {
+    let result = super.tryCall("timeLock", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 
   newOwnerCandidate(): Address {
     let result = super.call("newOwnerCandidate", []);
+
     return result[0].toAddress();
+  }
+
+  try_newOwnerCandidate(): CallResult<Address> {
+    let result = super.tryCall("newOwnerCandidate", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
   }
 
   allowedSpenders(param0: Address): boolean {
     let result = super.call("allowedSpenders", [
       EthereumValue.fromAddress(param0)
     ]);
+
     return result[0].toBoolean();
+  }
+
+  try_allowedSpenders(param0: Address): CallResult<boolean> {
+    let result = super.tryCall("allowedSpenders", [
+      EthereumValue.fromAddress(param0)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
   }
 
   absoluteMinTimeLock(): BigInt {
     let result = super.call("absoluteMinTimeLock", []);
+
     return result[0].toBigInt();
+  }
+
+  try_absoluteMinTimeLock(): CallResult<BigInt> {
+    let result = super.tryCall("absoluteMinTimeLock", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
+  }
+
+  authorizePayment(
+    _name: string,
+    _reference: Bytes,
+    _recipient: Address,
+    _token: Address,
+    _amount: BigInt,
+    _paymentDelay: BigInt
+  ): BigInt {
+    let result = super.call("authorizePayment", [
+      EthereumValue.fromString(_name),
+      EthereumValue.fromFixedBytes(_reference),
+      EthereumValue.fromAddress(_recipient),
+      EthereumValue.fromAddress(_token),
+      EthereumValue.fromUnsignedBigInt(_amount),
+      EthereumValue.fromUnsignedBigInt(_paymentDelay)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_authorizePayment(
+    _name: string,
+    _reference: Bytes,
+    _recipient: Address,
+    _token: Address,
+    _amount: BigInt,
+    _paymentDelay: BigInt
+  ): CallResult<BigInt> {
+    let result = super.tryCall("authorizePayment", [
+      EthereumValue.fromString(_name),
+      EthereumValue.fromFixedBytes(_reference),
+      EthereumValue.fromAddress(_recipient),
+      EthereumValue.fromAddress(_token),
+      EthereumValue.fromUnsignedBigInt(_amount),
+      EthereumValue.fromUnsignedBigInt(_paymentDelay)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBigInt());
   }
 
   escapeHatchDestination(): Address {
     let result = super.call("escapeHatchDestination", []);
+
     return result[0].toAddress();
+  }
+
+  try_escapeHatchDestination(): CallResult<Address> {
+    let result = super.tryCall("escapeHatchDestination", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
   }
 }
 

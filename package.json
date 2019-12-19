@@ -4,13 +4,13 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ geleeroyale/giveth-donation",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ wip-abramson/giveth-donation",
     "create-local": "graph create --node http://localhost:8020/ geleeroyale/giveth-donation",
     "remove-local": "graph remove --node http://localhost:8020/ geleeroyale/giveth-donation",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 geleeroyale/giveth-donation"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.12.0",
-    "@graphprotocol/graph-ts": "0.11.0"
+    "@graphprotocol/graph-cli": "^0.16.2",
+    "@graphprotocol/graph-ts": "^0.16.0"
   }
 }

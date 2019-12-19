@@ -1,84 +1,81 @@
-type Donate @entity {
-  id: ID!
-  giverId: BigInt! # uint64
-  receiverId: BigInt! # uint64
-  token: Bytes! # address
-  amount: BigInt! # uint256
+type Donation @entity {
+    id: ID!,
+    from: Giver!,
+    to: DonationRecipient!,
+    token: Token!
+#    weiValue: BigInt!
+    value: BigDecimal!,
+    timeSent: BigInt!
 }
 
-type DonateAndCreateGiver @entity {
-  id: ID!
-  giver: Bytes! # address
-  receiverId: BigInt! # uint64
-  token: Bytes! # address
-  amount: BigInt! # uint256
+type Giver @entity {
+    id: ID!,
+    givethId: BigInt
+    donationCount: Int!
+    donations: [Donation]! @derivedFrom(field: "from")
 }
 
-type EscapeFundsCalled @entity {
+type Token @entity {
   id: ID!
-  token: Bytes! # address
-  amount: BigInt! # uint256
+  tokenAddress: Bytes!,
+  tokenName: String!
+  totalDonated: BigDecimal!
+  donationCount: Int!
 }
 
-type PaymentAuthorized @entity {
+type DonationRecipient @entity {
   id: ID!
-  idPayment: BigInt! # uint256
-  recipient: Bytes! # address
-  amount: BigInt! # uint256
-  token: Bytes! # address
-  reference: Bytes! # bytes32
+  donations: [Donation]! @derivedFrom(field: "to")
+  donationCount: Int!
 }
 
-type PaymentExecuted @entity {
+type TokenValue @entity {
   id: ID!
-  idPayment: BigInt! # uint256
-  recipient: Bytes! # address
-  amount: BigInt! # uint256
-  token: Bytes! # address
+  token: Token!
+  amount: BigDecimal!
 }
 
-type PaymentCanceled @entity {
-  id: ID!
-  idPayment: BigInt! # uint256
-}
 
-type SpenderAuthorization @entity {
-  id: ID!
-  spender: Bytes! # address
-  authorized: Boolean! # bool
-}
+#type Donate @entity {
+#  id: ID!
+#  giverId: BigInt! # uint64
+#  receiverId: BigInt! # uint64
+#  token: Bytes! # address
+#  amount: BigInt! # uint256
+#}
 
-type Pause @entity {
-  id: ID!
-}
+#type DonateAndCreateGiver @entity {
+#  id: ID!
+#  giver: Bytes! # address
+#  receiverId: BigInt! # uint64
+#  token: Bytes! # address
+#  amount: BigInt! # uint256
+#}
+#
+#type EscapeFundsCalled @entity {
+#  id: ID!
+#  token: Bytes! # address
+#  amount: BigInt! # uint256
+#}
 
-type Unpause @entity {
-  id: ID!
-}
+#type PaymentAuthorized @entity {
+#  id: ID!
+#  idPayment: BigInt! # uint256
+#  recipient: Bytes! # address
+#  amount: BigInt! # uint256
+#  token: Bytes! # address
+#  reference: Bytes! # bytes32
+#}
 
-type EscapeHatchBlackistedToken @entity {
-  id: ID!
-  token: Bytes! # address
-}
+#
+#type EscapeHatchBlackistedToken @entity {
+#  id: ID!
+#  token: Bytes! # address
+#}
 
-type EscapeHatchCalled @entity {
-  id: ID!
-  token: Bytes! # address
-  amount: BigInt! # uint256
-}
+#type EscapeHatchCalled @entity {
+#  id: ID!
+#  token: Bytes! # address
+#  amount: BigInt! # uint256
+#}
 
-type OwnershipRequested @entity {
-  id: ID!
-  by: Bytes! # address
-  to: Bytes! # address
-}
-
-type OwnershipTransferred @entity {
-  id: ID!
-  from: Bytes! # address
-  to: Bytes! # address
-}
-
-type OwnershipRemoved @entity {
-  id: ID!
-}
